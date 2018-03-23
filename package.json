@@ -4,8 +4,7 @@
   "description": "Heimdall Slackbot",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +17,7 @@
   },
   "homepage": "https://github.com/emrossa/heimdall#readme",
   "dependencies": {
-    "slackbots": "^1.1.0"
+    "slackbots": "^1.1.0",
+    "sqlite3": "^4.0.0"
   }
 }
