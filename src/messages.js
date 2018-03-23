@@ -66,8 +66,17 @@ var self = {
                 optOut(data.user, bot.reply(data.channel));
                 break;
 
+            case 'help':
+                bot.postMessage(data.channel, [
+                    'Here is a list of commands:',
+                    '• `locate @user`: If that user is opted in, I’ll tell you where I last saw them.',
+                    '• `optin` / `optout`: Choose whether I keep an eye on you.'
+                ].join('\n'));
+
+                break;
+
             default:
-                bot.postMessage(data.channel, 'Sorry, I don’t understand!');
+                bot.postMessage(data.channel, 'Sorry, I don’t understand! Try asking for `help`.');
         }
     }
 };
