@@ -65,6 +65,9 @@ var self = {
             case 'optout':
                 optOut(data.user, bot.reply(data.channel));
                 break;
+
+            default:
+                bot.postMessage(data.channel, 'Sorry, I don’t understand!');
         }
     }
 };
