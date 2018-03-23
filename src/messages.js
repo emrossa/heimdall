@@ -1,10 +1,25 @@
 var users = require('./users');
+var cherwell = require('./cherwell');
+var bot;
 
 function locateUser(user, callback) {
     if (/^<@[A-Z0-9]+>$/.test(user)) {
-        users.isOptedIn(user.replace(/[<@>]/g, ''), function (err, isOptedIn) {
+        var userId = user.replace(/[<@>]/g, '');
+        users.isOptedIn(userId, function (err, isOptedIn) {
             if (isOptedIn) {
-                callback(err, 'OK, going to locate ' + user);
+                bot.getUserById(userId).then(function (slackUser) {
+                    var cherwellUser = cherwell.getUserByEmail(slackUser.profile.email);
+                    if (!cherwellUser) {
+                        return callback(new Error('no_user'), 'I can’t find ' + user + ' in Cherwell!');
+                    }
+
+                    var devices = cherwell.getDevicesByOwner(cherwellUser);
+                    if (devices.length == 0) {
+                        return callback(new Error('no_devices'), 'I can’t find any devices for ' + user);
+                    }
+
+                    callback(err, 'Found device ' + devices[0].hostname + ' for user ' + user);
+                });
             }
             else {
                 callback(err, 'Sorry, ' + user + ' is not opted in');
@@ -34,20 +49,21 @@ function optOut(user, callback) {
 }
 
 var self = {
-    handle: function (text, data, callback) {
+    handle: function (text, data, handleBot) {
         var words = text.split(' ');
+        bot = handleBot;
 
         switch (words[0]) {
             case 'locate':
-                locateUser(words[1], callback);
+                locateUser(words[1], bot.reply(data.channel));
                 break;
 
             case 'optin':
-                optIn(data.user, callback);
+                optIn(data.user, bot.reply(data.channel));
                 break;
 
             case 'optout':
-                optOut(data.user, callback);
+                optOut(data.user, bot.reply(data.channel));
                 break;
         }
     }
