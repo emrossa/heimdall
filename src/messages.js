@@ -6,6 +6,10 @@ function locateUser(user, callback) {
     if (/^<@[A-Z0-9]+>$/.test(user)) {
         var userId = user.replace(/[<@>]/g, '');
         users.isOptedIn(userId, function (err, isOptedIn) {
+            if (err) {
+                return callback(err);
+            }
+
             if (isOptedIn) {
                 bot.getUserById(userId).then(function (slackUser) {
                     var cherwellUser = cherwell.getUserByEmail(slackUser.profile.email);

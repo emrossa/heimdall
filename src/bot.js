@@ -29,7 +29,7 @@ var bot = new SlackBot({
 });
 
 bot.on('message', function (data) {
-    if (data.type == 'message' && data.text) {
+    if (data.type == 'message' && data.text && data.user != this.self.id) {
         this.getChannels().then(function (response) {
             if (response.channels.filter(c => c.id == data.channel).length) {
                 if (data.text.startsWith(bot.getHandle())) {
@@ -39,6 +39,8 @@ bot.on('message', function (data) {
             else {
                 bot.emit('im', data);
             }
+        }).catch(function (error) {
+            console.error('Error', error.stack);
         });
     }
 });
