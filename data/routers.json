@@ -1,0 +1,11 @@
+[{
+    "hostname": "sbg-lw2-ap-01",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Promotions area"
+}, {
+    "hostname": "sbg-lw2-ap-02",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Vegas area"
+}]

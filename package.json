@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/emrossa/heimdall#readme",
   "dependencies": {
+    "ordinal": "^1.0.2",
     "slackbots": "^1.1.0",
     "sqlite3": "^4.0.0"
   }
