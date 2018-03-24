@@ -1,5 +1,5 @@
 var sqlite = require('sqlite3');
-var db = new sqlite.Database('optins.db');
+var db = new sqlite.Database('data/optins.db');
 
 db.on('open', function () {
     this.run('CREATE TABLE IF NOT EXISTS optins (user VARCHAR UNIQUE)');
