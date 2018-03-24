@@ -1,5 +1,8 @@
+var util = require('util');
 var users = require('./users');
 var cherwell = require('./cherwell');
+var routers = require('./routers');
+var sessions = require('./sessions');
 var bot;
 
 function locateUser(user, callback) {
@@ -22,7 +25,19 @@ function locateUser(user, callback) {
                         return callback(new Error('no_devices'), 'I can’t find any devices for ' + user);
                     }
 
-                    callback(err, 'Found device ' + devices[0].hostname + ' for user ' + user);
+                    var session = sessions.getLatest(devices[0].macAddress);
+                    if (!session) {
+                        return callback(new Error('no_events'), 'I haven’t seen ' + user);
+                    }
+
+                    callback(null, util.format(
+                        'I last saw %s %s at %s',
+                        user,
+                        session.getRelativeTime(),
+                        routers.get(session.getRouter()).getName()
+                    ));
+                }).catch(function (error) {
+                    console.error('Error', error);
                 });
             }
             else {
