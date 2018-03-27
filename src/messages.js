@@ -13,36 +13,35 @@ function locateUser(user, callback) {
                 return callback(err);
             }
 
-            if (isOptedIn) {
-                bot.getUserById(userId).then(function (slackUser) {
-                    var cherwellUser = cherwell.getUserByEmail(slackUser.profile.email);
-                    if (!cherwellUser) {
-                        return callback(new Error('no_user'), 'I can’t find ' + user + ' in Cherwell!');
-                    }
-
-                    var devices = cherwell.getDevicesByOwner(cherwellUser);
-                    if (devices.length == 0) {
-                        return callback(new Error('no_devices'), 'I can’t find any devices for ' + user);
-                    }
-
-                    var session = sessions.getLatest(devices[0].macAddress);
-                    if (!session) {
-                        return callback(new Error('no_events'), 'I haven’t seen ' + user);
-                    }
-
-                    callback(null, util.format(
-                        'I last saw %s %s at %s',
-                        user,
-                        session.getRelativeTime(),
-                        routers.get(session.getRouter()).getName()
-                    ));
-                }).catch(function (error) {
-                    console.error('Error', error);
-                });
+            if (!isOptedIn) {
+                return callback(err, 'Sorry, ' + user + ' is not opted in');
             }
-            else {
-                callback(err, 'Sorry, ' + user + ' is not opted in');
-            }
+
+            bot.getUserById(userId).then(function (slackUser) {
+                var cherwellUser = cherwell.getUserByEmail(slackUser.profile.email);
+                if (!cherwellUser) {
+                    return callback(new Error('no_user'), 'I can’t find ' + user + ' in Cherwell!');
+                }
+
+                var devices = cherwell.getDevicesByOwner(cherwellUser);
+                if (devices.length == 0) {
+                    return callback(new Error('no_devices'), 'I can’t find any devices for ' + user);
+                }
+
+                var session = sessions.getLatest(devices[0].macAddress);
+                if (!session) {
+                    return callback(new Error('no_events'), 'I haven’t seen ' + user);
+                }
+
+                callback(null, util.format(
+                    'I last saw %s %s at %s',
+                    user,
+                    session.getRelativeTime(),
+                    routers.get(session.getRouter()).getName()
+                ));
+            }).catch(function (error) {
+                console.error('Error', error);
+            });
         });
     }
     else {
