@@ -66,7 +66,7 @@ function optOut(user, callback) {
     });
 }
 
-var self = {
+module.exports = {
     handle: function (text, data, handleBot) {
         var words = text.split(' ');
         bot = handleBot;
@@ -98,5 +98,3 @@ var self = {
         }
     }
 };
-
-module.exports = self;

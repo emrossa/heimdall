@@ -5,7 +5,7 @@ db.on('open', function () {
     this.run('CREATE TABLE IF NOT EXISTS optins (user VARCHAR UNIQUE)');
 });
 
-var self = {
+module.exports = {
     optIn: function (user, callback) {
         db.run('INSERT OR IGNORE INTO optins VALUES (?);', user, function (err) {
             callback(err, !!this.changes);
@@ -22,5 +22,3 @@ var self = {
         });
     }
 };
-
-module.exports = self;
