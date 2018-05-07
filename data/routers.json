@@ -2,10 +2,75 @@
     "hostname": "sbg-lw2-ap-01",
     "building": "LW2",
     "floor": 6,
-    "name": "Promotions area"
+    "name": "Promotions"
 }, {
     "hostname": "sbg-lw2-ap-02",
     "building": "LW2",
     "floor": 6,
-    "name": "Vegas area"
+    "name": "Vegas"
+}, {
+    "hostname": "sbg-lw2-ap-03",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Dark Horse"
+}, {
+    "hostname": "sbg-lw2-ap-04",
+    "building": "LW2",
+    "floor": 6,
+    "name": "the Kitchen"
+}, {
+    "hostname": "sbg-lw2-ap-05",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Admin / Apps / Benches area"
+}, {
+    "hostname": "sbg-lw2-ap-06",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Casino"
+}, {
+    "hostname": "sbg-lw2-ap-07",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Bingo"
+}, {
+    "hostname": "sbg-lw2-ap-08",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Platform & Reliability"
+}, {
+    "hostname": "sbg-lw2-ap-09",
+    "building": "LW2",
+    "floor": 6,
+    "name": "1-2-1 rooms area"
+}, {
+    "hostname": "sbg-lw2-ap-10",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Gaming Operations"
+}, {
+    "hostname": "sbg-lw2-ap-11",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Marketing"
+}, {
+    "hostname": "sbg-lw2-ap-12",
+    "building": "LW2",
+    "floor": 6,
+    "name": "6.4 / 6.5 area"
+}, {
+    "hostname": "sbg-lw2-ap-13",
+    "building": "LW2",
+    "floor": 6,
+    "name": "Finance"
+}, {
+    "hostname": "sbg-lw2-ap-14",
+    "building": "LW2",
+    "floor": 6,
+    "name": "6.3"
+}, {
+    "hostname": "sbg-lw2-ap-15",
+    "building": "LW2",
+    "floor": 6,
+    "name": "6.1 / 6.2"
 }]
