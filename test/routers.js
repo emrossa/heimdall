@@ -6,8 +6,8 @@ describe('Routers', function () {
         var actual = routers.get('sbg-lw2-ap-02');
 
         assert.strictEqual(actual.constructor.name, 'Router');
-        assert.strictEqual(actual.data.name, 'Vegas area');
-        assert.strictEqual(actual.getName(), 'Vegas area on the 6th floor of LW2');
+        assert.strictEqual(actual.data.name, 'Vegas');
+        assert.strictEqual(actual.getName(), 'Vegas on the 6th floor of LW2');
     });
 
     it('should return a router when details unknown', function () {
